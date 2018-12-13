@@ -5,33 +5,26 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_derslerim"
+            android:icon="@mipmap/ic_derslerim"
+            android:title="Derslerim" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_ders_ekle"
+            android:icon="@mipmap/ic_ders_ekle"
+            android:title="Ders Ekle" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_fotograflarim"
+            android:icon="@mipmap/ic_fotograflarim"
+            android:title="Fotoğraflarım" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_ses_kayitlarim"
+            android:icon="@mipmap/ic_ses_kayitlarim"
+            android:title="Ses Kayıtlarım" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@mipmap/ic_logout"
