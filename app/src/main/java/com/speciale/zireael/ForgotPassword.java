@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -55,6 +56,10 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
         }
         else if (view.getId() == R.id.forgot_btn_reset)
         {
+            //for close to virtual keyboard.
+            InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            //
             resetPassword(input_email.getText().toString());
         }
 

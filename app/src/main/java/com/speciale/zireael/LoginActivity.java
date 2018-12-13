@@ -6,8 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -21,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnLogin;
-    EditText input_email, input_password;
+    EditText input_email = null , input_password = null;
     TextView btnSignup, btnForgotPass;
 
     RelativeLayout relativeLayout;
@@ -74,7 +76,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         else if (view.getId() == R.id.login_btn_login)
         {
-            loginUser(input_email.getText().toString(), input_password.getText().toString());
+            //for close to virtual keyboard.
+            InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            //
+            System.out.println("email:"+input_email.getText().toString()+input_password.getText().toString());
+            if (TextUtils.isEmpty(input_email.getText().toString())){
+                Snackbar snackbar = Snackbar.make(relativeLayout,
+                        "Please enter a valid e-mail.", Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+            else if (TextUtils.isEmpty(input_password.getText().toString())){
+                Snackbar snackbar = Snackbar.make(relativeLayout,
+                        "Please enter a valid password.", Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
+            else {
+                loginUser(input_email.getText().toString(), input_password.getText().toString());
+            }
+
         }
 
 
@@ -95,9 +115,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         Snackbar.LENGTH_LONG);
                                 snackbar.show();
                             }
+                            else {
+                                Snackbar snackbar = Snackbar.make(relativeLayout,
+                                        "Please check your login information and try again.",
+                                        Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
                         }
                         else {
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
                         }
                     }
                 });

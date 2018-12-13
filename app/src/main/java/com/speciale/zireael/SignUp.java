@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -67,6 +68,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
         else if (view.getId() == R.id.signup_btn_register)
         {
+            //for close to virtual keyboard.
+            InputMethodManager inputManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            //
             signUpUser(input_email.getText().toString(), input_pass.getText().toString());
         }
 
