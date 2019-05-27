@@ -13,13 +13,13 @@
             android:icon="@mipmap/ic_ders_ekle"
             android:title="Ders Ekle" />
         <item
-            android:id="@+id/nav_fotograflarim"
-            android:icon="@mipmap/ic_fotograflarim"
-            android:title="Fotoğraflarım" />
+            android:id="@+id/nav_fotograf_cek"
+            android:icon="@mipmap/ic_fotograf_cek"
+            android:title="Fotoğraf Çek" />
         <item
-            android:id="@+id/nav_ses_kayitlarim"
-            android:icon="@mipmap/ic_ses_kayitlarim"
-            android:title="Ses Kayıtlarım" />
+            android:id="@+id/nav_ses_kaydi"
+            android:icon="@mipmap/ic_ses_kaydi"
+            android:title="Ses Kaydı Al" />
     </group>
 
     <item android:title="">

@@ -2,12 +2,11 @@ package com.speciale.zireael;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -64,13 +63,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (view.getId() == R.id.login_btn_forgot_password)
         {
-            startActivity(new Intent(LoginActivity.this, ForgotPassword.class));
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
             finish();
         }
 
         else if (view.getId() == R.id.login_btn_signup)
         {
-            startActivity(new Intent(LoginActivity.this, SignUp.class));
+            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             finish();
         }
 

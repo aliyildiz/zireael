@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.adrielcafe:AndroidAudioRecorder:0.3.0@aar">
+    <CLASSES>
+      <root url="file://C:/Android/.gradle/caches/transforms-1/files-1.1/jetified-AndroidAudioRecorder-0.3.0.aar/40837101645351916bf4954dea184fbe/res" />
+      <root url="jar://C:/Android/.gradle/caches/transforms-1/files-1.1/jetified-AndroidAudioRecorder-0.3.0.aar/40837101645351916bf4954dea184fbe/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://C:/Android/.gradle/caches/modules-2/files-2.1/com.github.adrielcafe/AndroidAudioRecorder/0.3.0/88f4470d024423f36dd12cd0cf866c6c814e6975/AndroidAudioRecorder-0.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

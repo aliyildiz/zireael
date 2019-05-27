@@ -3,4 +3,5 @@
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#37474F</color>
     <color name="colorAccent">#ECEFF1</color>
+    <color name="transparentColor">@android:color/transparent</color>
 </resources>
