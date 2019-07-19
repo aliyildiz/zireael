@@ -76,24 +76,6 @@ public class PhotosFragment extends Fragment {
 
                     ImageInfos imageinfo = postSnapshot.getValue(ImageInfos.class);
                     list.add(imageinfo);
-
-
-//                    for (DataSnapshot snapshot : postSnaphot.getChildren()){
-//                        //alttaki oldu link geliyor!!!!!!!!!!
-//                        System.out.println("imageden:"+snapshot.getValue());
-////                        System.out.println("imagedene:"+ snapshot.getValue(ImageInfos.class).getClass());
-////                        ImageInfos imageinfo = snapshot.getValue(ImageInfos.class);
-//                        //System.out.println("imagedeneme:"+imageinfo);
-//                        list.add(snapshot.getValue(ImageInfos.class));
-//
-//                        //list.add(imageinfo);
-//                    }
-
-                    //alttaki oldu link geliyor!!!!!!!!!!
-//                    System.out.println("imageden:"+postSnaphot.child("imageURL").getValue());
-//                    ImageInfos imageinfo = postSnaphot.child("imageURL").getValue(ImageInfos.class);
-//                    System.out.println("imagedeneme:"+imageinfo);
-//                    list.add(imageinfo);
                 }
 
                 adapter = new ImagesAdapter(getContext(), list);

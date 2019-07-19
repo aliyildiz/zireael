@@ -42,6 +42,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,6 +69,9 @@ public class MainActivity extends AppCompatActivity
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         UserID = firebaseUser.getUid();
         System.out.println("user:" + firebaseUser.getUid());
+
+
+
 
         if (savedInstanceState == null) {
             DerslerFragment derslerFragment = new DerslerFragment();
@@ -102,12 +107,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
+        } else {
 
-        else {
+
+
             //super.onBackPressed();
+            System.out.println("geldi");
             getSupportFragmentManager().popBackStack();
-
 
         }
     }
@@ -148,7 +154,6 @@ public class MainActivity extends AppCompatActivity
 
     private void displaySelectedScreen(int id) {
         Fragment fragment = null;
-
         switch (id) {
             case R.id.nav_derslerim:
                 fragment = new DerslerFragment();
@@ -171,14 +176,12 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
         }
-
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_main, fragment);
             ft.addToBackStack(null);
             ft.commit();
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
@@ -214,14 +217,13 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
-
 
             final checkTime checkTime = new checkTime();
             String gunEn = checkTime.checkEvent();
 
-            final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                    .getReference();
             Query query = databaseReference.child("zireael_DB").child(UserID)
                     .orderByChild("classDay").equalTo(gunEn);
             query.addValueEventListener(new ValueEventListener() {
@@ -230,16 +232,11 @@ public class MainActivity extends AppCompatActivity
 
                     for (final DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
 
-
                         final Event event = postSnapShot.getValue(Event.class);
-
 
                         String start = event.getClassStime();
                         String end = event.getClassEtime();
-
-
                         boolean test = checkTime.checkTime(start, end);
-
 
                         if (test) {
                             String EventName = event.getClassName();
@@ -250,32 +247,22 @@ public class MainActivity extends AppCompatActivity
                                     .addOnSuccessListener(
                                             new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                 @Override
-                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                                public void onSuccess(UploadTask.TaskSnapshot
+                                                                              taskSnapshot) {
 
-
-                                                    final DatabaseReference databaseReference1 = FirebaseDatabase
+                                                    final DatabaseReference databaseReference1 =
+                                                            FirebaseDatabase
                                                             .getInstance()
-                                                            .getReference("zireael_Photos" + "/" + UserID);
+                                                            .getReference("zireael_Photos"
+                                                                    + "/" + UserID);
 
-
-//                                    if (taskSnapshot.getMetadata() != null) {
-//                                        if (taskSnapshot.getMetadata().getReference() != null) {
-//                                            Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-//                                            result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                                @Override
-//                                                public void onSuccess(Uri uri) {
-//                                                    imageUrl = uri.toString();
-//                                                    System.out.println("fotourl:"+imageUrl);
-//                                                }
-//                                            });
-//                                        }
-//                                    }
-
-                                                    filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    filepath.getDownloadUrl().addOnSuccessListener(
+                                                            new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
                                                             imageUrl = uri.toString();
-                                                            ImageInfos imageInfo = new ImageInfos(imageUrl);
+                                                            ImageInfos imageInfo = new ImageInfos(
+                                                                    imageUrl);
 
                                                             String eventID = event.getEventID();
 
@@ -284,19 +271,9 @@ public class MainActivity extends AppCompatActivity
                                                         }
                                                     });
 
-//                                    ImageInfos imageInfo = new ImageInfos(imageUrl);
-//
-//                                    String eventID = event.getEventID();
-//
-//
-//                                    databaseReference1.child(eventID).push()
-//                                            .setValue(imageInfo);
-
-
                                                     Toast.makeText(MainActivity.this,
                                                             "Uploading Finished",
                                                             Toast.LENGTH_SHORT).show();
-
 
                                                 }
                                             });

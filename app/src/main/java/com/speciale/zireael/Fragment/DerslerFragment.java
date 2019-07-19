@@ -22,12 +22,13 @@ import com.speciale.zireael.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class DerslerFragment extends Fragment {
+public class DerslerFragment extends Fragment{
 
 
     RecyclerView recyclerView;
@@ -35,6 +36,7 @@ public class DerslerFragment extends Fragment {
     private FirebaseRecyclerAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
     public static final String event_ID = "com.speciale.zireael.Fragment.eventid";
+    FragmentManager fragmentManager;
 
 
 
@@ -61,10 +63,12 @@ public class DerslerFragment extends Fragment {
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
+
         fetch();
 
         return view;
     }
+
 
 
     private void fetch() {
@@ -93,7 +97,6 @@ public class DerslerFragment extends Fragment {
                 .build();
         adapter = new FirebaseRecyclerAdapter <Event, ViewHolder>(options) {
 
-
             @NonNull
             @Override
             public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -106,7 +109,8 @@ public class DerslerFragment extends Fragment {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i, @NonNull final Event event) {
+            protected void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i,
+                                            @NonNull final Event event) {
 
                 viewHolder.setTextView1(event.getClassName());
                 viewHolder.setTextView2(event.getClassDay());
@@ -121,58 +125,16 @@ public class DerslerFragment extends Fragment {
                         Toast.makeText(getContext(), String.valueOf(i), Toast.LENGTH_LONG).show();
 
                         String id = event.getEventID();
-
-
                         Bundle bundle =new Bundle();
                         bundle.putString("eventid",id);
 
                         DetailsFragment fragment = new DetailsFragment();
-
                         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
                         fragment.setArguments(bundle);
                         ft.replace(R.id.derslerFragment, fragment);
                         ft.addToBackStack(null);
                         ft.commit();
 
-
-//
-//                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                        String id = user.getUid();
-
-
-
-//                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-//                        DatabaseReference ref2 = ref.child("zireael_DB").child(id);
-//
-//                        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-//                                    long key = dataSnapshot1.child("-Le02WC25XeAnGOKs4R3").getChildrenCount();
-//                                    System.out.println(key);
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                            }
-//                        });
-
-
-//                        query2 = FirebaseDatabase.getInstance()
-//                                .getReference()
-//                                .child("zireael_DB"+"/"+id).child(v.toString());
-
-
-//                        DatabaseReference deneRef = firebaseDatabase.getReference();
-//                        String key = deneRef.child(id).getKey();
-//                        System.out.println(key);
-
-
-//                        DatabaseReference denemeRef = query2.getRef();
-//                        String key = denemeRef.getKey();
-//                        System.out.println("sonuc:"+key);
                     }
 
 

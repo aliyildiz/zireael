@@ -7,7 +7,6 @@ public class SoundInfos {
     public SoundInfos() {
     }
 
-
     public SoundInfos(String soundURL) {
         this.soundURL = soundURL;
     }
@@ -16,7 +15,4 @@ public class SoundInfos {
         return soundURL;
     }
 
-    public void setSoundURL(String soundURL) {
-        this.soundURL = soundURL;
-    }
 }

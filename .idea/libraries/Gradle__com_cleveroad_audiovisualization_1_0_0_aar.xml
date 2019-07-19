@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.cleveroad:audiovisualization:1.0.0@aar">
     <CLASSES>
-      <root url="file://C:/Android/.gradle/caches/transforms-1/files-1.1/jetified-audiovisualization-1.0.0.aar/aa71612ce3f6a11c001a7cb8d07a2075/res" />
-      <root url="jar://C:/Android/.gradle/caches/transforms-1/files-1.1/jetified-audiovisualization-1.0.0.aar/aa71612ce3f6a11c001a7cb8d07a2075/jars/classes.jar!/" />
+      <root url="jar://C:/Android/.gradle/caches/transforms-2/files-2.1/83abfb5f4bbe85991a9e0461f7d2438b/jars/classes.jar!/" />
+      <root url="file://C:/Android/.gradle/caches/transforms-2/files-2.1/83abfb5f4bbe85991a9e0461f7d2438b/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

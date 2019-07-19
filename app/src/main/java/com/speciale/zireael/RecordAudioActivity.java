@@ -33,11 +33,8 @@ import cafe.adriel.androidaudiorecorder.AndroidAudioRecorder;
 public class RecordAudioActivity extends AppCompatActivity {
 
     StorageReference storageReference;
-    String filepath;
-    String UserID;
-    String soundURL;
+    String filepath, UserID, soundURL;
     SoundInfos soundInfos;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,13 +69,9 @@ public class RecordAudioActivity extends AppCompatActivity {
 
     private void upload() {
 
-        //final StorageReference file = storageReference.child("new_audio"+ new Date().getTime());
-
         final Uri uri = Uri.fromFile(new File(filepath));
-
         final checkTime checkTime = new checkTime();
         String gunEn = checkTime.checkEvent();
-
         final DatabaseReference databaseReference = FirebaseDatabase
                                                      .getInstance()
                                                      .getReference();
@@ -92,63 +85,34 @@ public class RecordAudioActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapShot : dataSnapshot.getChildren()){
-                    System.out.println("denemegun2:"+postSnapShot.getKey());
 
                     final Event event = postSnapShot.getValue(Event.class);
-
                     String start = event.getClassStime();
                     String end = event.getClassEtime();
-
-                    System.out.println("Start:"+start);
-                    System.out.println("End:"+end);
-
-
                     boolean test = checkTime.checkTime(start,end);
-                    System.out.println("Test:"+test);
-
 
                     if (test){
                         String EventName = event.getClassName();
-                        System.out.println("denemegun3:"+EventName);
                         final StorageReference file = storageReference
                                 .child(UserID+"/"+"Sounds"+"/"+EventName)
                                 .child("/"+new Date().getTime());
                         file.putFile(uri)
-                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                .addOnSuccessListener(
+                                        new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
 
-//                                DatabaseReference databaseReference1 = FirebaseDatabase
-//                                        .getInstance()
-//                                        .getReference("zireael_Sounds"+"/"+UserID);
-
-
-                                Toast.makeText(RecordAudioActivity.this, "Uploading Finished",
+                                Toast.makeText(RecordAudioActivity.this,
+                                        "Uploading Finished",
                                         Toast.LENGTH_SHORT).show();
-
-//                                if (taskSnapshot.getMetadata() != null) {
-//                                    if (taskSnapshot.getMetadata().getReference() != null) {
-//                                        Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-//                                        result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                            @Override
-//                                            public void onSuccess(Uri uri) {
-//                                                soundURL = uri.toString();
-//                                                System.out.println("soundurl:"+soundURL);
-//                                            }
-//                                        });
-//                                    }
-//                                }
-
 
                                 file.getDownloadUrl()
                                         .addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         soundURL = uri.toString();
-                                        System.out.println("soundurl:"+soundURL);
                                         soundInfos = new SoundInfos(soundURL);
-                                        System.out.println("soundurl2:"+soundInfos.getSoundURL());
                                         String eventID = event.getEventID();
 
                                         DatabaseReference databaseReference1 = FirebaseDatabase
@@ -165,23 +129,6 @@ public class RecordAudioActivity extends AppCompatActivity {
 
                                     }
                                 });
-
-
-//                                soundInfos = new SoundInfos(soundURL);
-
-//                                String eventID = event.getEventID();
-//
-//
-//                                DatabaseReference databaseReference1 = FirebaseDatabase
-//                                        .getInstance()
-//                                        .getReference("zireael_Sounds"+"/"+UserID);
-//
-//
-//                                try {
-//                                    databaseReference1.child(eventID).push().setValue(soundInfos);
-//                                }catch (Exception e){
-//                                    System.out.println("hata:"+e.getMessage());
-//                                }
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {

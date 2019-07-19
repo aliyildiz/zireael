@@ -6,23 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jkb.fragment.rigger.annotation.Puppet;
-import com.jkb.fragment.rigger.rigger.Rigger;
 import com.speciale.zireael.R;
+
+import net.skoumal.fragmentback.BackFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-@Puppet
-public class DetailsFragment extends Fragment {
 
+public class DetailsFragment extends Fragment implements BackFragment {
 
-    public void onRiggerBackPressed(){
-        Rigger.getRigger(this).onBackPressed();
-        //if you nedd intercept onBackPressed method,do not write the above code.
-    }
 
     @Nullable
     @Override
@@ -46,7 +41,6 @@ public class DetailsFragment extends Fragment {
 
         TextView photoText = view.findViewById(R.id.photosDetails);
         TextView soundText = view.findViewById(R.id.soundsDetails);
-
 
 
 
@@ -79,5 +73,13 @@ public class DetailsFragment extends Fragment {
     }
 
 
+    @Override
+    public boolean onBackPressed() {
+        return false;
+    }
 
+    @Override
+    public int getBackPriority() {
+        return NORMAL_BACK_PRIORITY+1;
+    }
 }

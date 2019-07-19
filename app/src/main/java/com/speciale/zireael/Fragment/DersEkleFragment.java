@@ -64,8 +64,6 @@ public class DersEkleFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("zireael_DB" + "/" + firebaseUser.getUid());
 
-        //databaseReference.setValue("Hello World!");
-
 
         Spinner spinner = view.findViewById(R.id.spinner);
 
@@ -238,13 +236,10 @@ public class DersEkleFragment extends Fragment {
         String eventName = eventText.getText().toString();
         String eventID = databaseReference.push().getKey();
 
-
         Event class1 = new Event(eventID, eventName, day, startTime, endTime);
-
 
         databaseReference.child(eventID)
                 .setValue(class1);
-
 
         Fragment fragment = new DerslerFragment();
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();

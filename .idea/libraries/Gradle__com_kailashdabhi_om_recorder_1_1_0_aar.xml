@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.kailashdabhi:om-recorder:1.1.0@aar">
     <CLASSES>
-      <root url="jar://C:/Android/.gradle/caches/transforms-1/files-1.1/om-recorder-1.1.0.aar/2c079a39961c6a9db77853411b2523b4/jars/classes.jar!/" />
-      <root url="file://C:/Android/.gradle/caches/transforms-1/files-1.1/om-recorder-1.1.0.aar/2c079a39961c6a9db77853411b2523b4/res" />
+      <root url="file://C:/Android/.gradle/caches/transforms-2/files-2.1/745eb1ce49d463fb0b9818c9df2a85c9/res" />
+      <root url="jar://C:/Android/.gradle/caches/transforms-2/files-2.1/745eb1ce49d463fb0b9818c9df2a85c9/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
